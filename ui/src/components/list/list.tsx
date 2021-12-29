@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -6,24 +6,30 @@ import {
   Link
 } from "react-router-dom";
 
-
-
-const Home = () => {
-  return <h2>Home</h2>;
-}
-
-const About = () => {
-  return <h2>About</h2>;
-}
-
-const Users = () => {
-  return <h2>Users</h2>;
-}
-
 export function List() {
+  const [books, setBooks] = useState<any>();
+
+  useEffect(() => {
+    fetch('http://localhost:5000/books', { method: 'GET' })
+      .then(response => response.json())
+      .then(res => setBooks(res));
+  }, []);
+
+  if (!books) {
+    return null;
+  }
+
   return (
     <div>
       <h1>List</h1>
+      <ul>
+         {books.map((book: any) => {
+           const { author, title } = book;
+           return (
+             <li key={`${author}-${title}`}>{title} : {author}</li>
+           )
+         })}
+      </ul>
     </div>
   );
 }
