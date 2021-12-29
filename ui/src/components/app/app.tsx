@@ -5,6 +5,8 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import { Book } from "../book/book";
+import { List } from "../list/list";
 
 
 
@@ -27,13 +29,10 @@ export default function App() {
         <nav>
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/">List</Link>
             </li>
             <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/users">Users</Link>
+              <Link to="/books/:id">Book</Link>
             </li>
           </ul>
         </nav>
@@ -41,14 +40,11 @@ export default function App() {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/users">
-            <Users />
+          <Route path="/books/:id">
+            <Book />
           </Route>
           <Route path="/">
-            <Home />
+            <List />
           </Route>
         </Switch>
       </div>
