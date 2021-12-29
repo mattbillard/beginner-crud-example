@@ -4,10 +4,12 @@ var router = express.Router();
 // Fake database
 const fakeDb = {
   1: {
+    id: 1,
     title: 'Dune',
     author: 'Frank Herbert'
   },
   2: {
+    id: 2,
     title: 'The Hobbit',
     author: 'JRR Tolkien'
   }
@@ -26,6 +28,7 @@ router.post('/', function(req, res, next) {
   const nextId = parseInt(arr[arr.length -1]) +1;
 
   const newBook = req.body;
+  newBook.id = nextId;
   fakeDb[nextId] = newBook;
 
   res.send(newBook);
@@ -43,6 +46,7 @@ router.put('/:id', function(req, res, next) {
   const id = req.params.id;
   const newBook = req.body;
   fakeDb[id] = newBook;
+  newBook.id = id;
   res.send(newBook);
 });
 
