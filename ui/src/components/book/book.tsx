@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 
 export function Book(props: any) {
   const { id } = props.routeProps.match.params;
+  const isEdit = id ? true : false;
+  let history = useHistory();
 
   const [book, setBook] = useState<any>({});
 
   useEffect(() => {
-    getBook();
+    if (isEdit) {
+      getBook();
+    }
   }, []);
 
   const getBook = () => {
@@ -22,17 +27,36 @@ export function Book(props: any) {
 
   const saveBook = () =>  {
     const body = JSON.stringify(book);
-    debugger;
-    fetch(`http://localhost:5000/books/${id}`, { 
-      method: 'PUT', 
-      body,
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-     })
-      .then(response => response.json())
-      .then(res => {debugger;});
+
+    // Edit 
+    if (isEdit) {
+      fetch(`http://localhost:5000/books/${id}`, { 
+        method: 'PUT', 
+        body,
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+       })
+        .then(res => res.json())
+        .then(console.log);
+
+      // Create
+    } else {
+      fetch(`http://localhost:5000/books/`, { 
+        method: 'POST', 
+        body,
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+       })
+        .then(res => res.json())
+        .then(book => {
+          const url = `/books/${book.id}`
+          history.push(url);
+        });
+    }
   }
 
   const setValue = (key: string, value: string) => {

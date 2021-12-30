@@ -10,15 +10,15 @@ export function List() {
 
   const getBooks = () => {
     fetch('http://localhost:5000/books', { method: 'GET' })
-      .then(response => response.json())
-      .then(res => setBooks(res));
+      .then(res => res.json())
+      .then(books => setBooks(books));
   }  
 
   const deleteBook = (id: number) => {
     fetch(`http://localhost:5000/books/${id}`, { method: 'DELETE' })
-      .then(response => response.json())
-      .then((res) => {
-        console.log(res);
+      .then(res => res.json())
+      .then((book) => {
+        console.log(book);
         getBooks();
       });
   }

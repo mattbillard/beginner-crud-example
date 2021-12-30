@@ -17,16 +17,16 @@ export function App() {
             <li>
               <Link to="/">Home</Link>
             </li>
+            <li>
+              <Link to="/books/">Create new book</Link>
+            </li>
           </ul>
         </nav>
 
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
         <Switch>
           <Route path="/books/:id" render={(routeProps: any) => <Book routeProps={routeProps} />} />
-          <Route path="/">
-            <List />
-          </Route>
+          <Route path="/books" render={(routeProps: any) => <Book routeProps={routeProps} />} />
+          <Route path="/" render={() => <List />} />
         </Switch>
       </div>
     </Router>
