@@ -1,10 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export function List() {
   const [books, setBooks] = useState<any>();
@@ -29,7 +24,7 @@ export function List() {
   }
 
   if (!books) {
-    return null;
+    return ( <div> Loading... </div> );
   }
 
   return (
@@ -40,7 +35,12 @@ export function List() {
            const { author, id, title } = book;
            return (
              <li key={`${author}-${title}`}>
-               {id}) {title} : {author} 
+               {id}) 
+               &nbsp;
+               <Link to={`/books/${id}`}>
+                {title} by {author} 
+               </Link>
+               &nbsp;
                <a href="#" onClick={() => deleteBook(id)}>Delete</a>
              </li>
            )

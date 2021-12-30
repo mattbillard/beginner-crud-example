@@ -29,10 +29,7 @@ export default function App() {
         <nav>
           <ul>
             <li>
-              <Link to="/">List</Link>
-            </li>
-            <li>
-              <Link to="/books/:id">Book</Link>
+              <Link to="/">Home</Link>
             </li>
           </ul>
         </nav>
@@ -40,9 +37,7 @@ export default function App() {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
-          <Route path="/books/:id">
-            <Book />
-          </Route>
+          <Route path="/books/:id" render={(routeProps: any) => <Book routeProps={routeProps} />} />
           <Route path="/">
             <List />
           </Route>
