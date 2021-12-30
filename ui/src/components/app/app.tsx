@@ -8,21 +8,7 @@ import {
 import { Book } from "../book/book";
 import { List } from "../list/list";
 
-
-
-const Home = () => {
-  return <h2>Home</h2>;
-}
-
-const About = () => {
-  return <h2>About</h2>;
-}
-
-const Users = () => {
-  return <h2>Users</h2>;
-}
-
-export default function App() {
+export function App() {
   return (
     <Router>
       <div>
