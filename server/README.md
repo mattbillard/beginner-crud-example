@@ -1,4 +1,4 @@
-# UI
+# Server
 
 ## Requirements
 Node v16+
@@ -16,9 +16,4 @@ Node v16+
   ```
 
 You can see the server running at
-http://localhost:3000
-
-
-##  Notes
-- This app was create with [Create React App](https://github.com/facebook/create-react-app).
-
+http://localhost:5000/books
